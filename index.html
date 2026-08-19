@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aero Ingest — Professional Web-Scraping Engine & Dashboard</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Aero Ingest is a resilient, professional, and dark-mode compatible web scraper and monitoring dashboard. Tracks jobs cleanly with complete telemetry control.">
+  <meta name="keywords" content="web crawler, scraper dashboard, job scraper, local ingestion, system monitor">
+  <meta name="author" content="Aero Technologies">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo-link" id="logo-link" aria-label="Aero Home">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 22L12 17L22 22L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+          <path d="M12 2V17" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <span class="logo-text">aero<span class="logo-subtext">ingest</span></span>
+      </a>
+      
+      <div class="nav-actions">
+        <!-- Status Indicator -->
+        <div class="system-status-indicator" id="system-status-pill">
+          <span class="status-dot green"></span>
+          <span class="status-text">Server Connected</span>
+        </div>
+        
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme (Light/Dark)">
+          <!-- Moon Icon (Dark Mode active) -->
+          <svg class="theme-icon moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <!-- Sun Icon (Light Mode active) -->
+          <svg class="theme-icon sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Dashboard Title -->
+  <section class="dashboard-header">
+    <div class="container header-container">
+      <div class="header-badge animate-fade-in">
+        <span class="badge-text">Ingestion Console</span>
+        <span class="badge-separator">|</span>
+        <span class="badge-source">Source: We Work Remotely</span>
+      </div>
+      
+      <h1 class="header-title animate-slide-up">
+        System Control Center
+      </h1>
+      <p class="header-description animate-slide-up-delayed">
+        Manage crawling frequencies, examine real-time network request pacing logs, and monitor scraped listings.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Dashboard Panels Grid -->
+  <main class="dashboard-main">
+    <div class="container">
+      
+      <!-- Summary Metrics Grid -->
+      <section class="metrics-grid animate-slide-up-delayed2">
+        <!-- Metric 1: Total Jobs -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">Jobs Scraped</span>
+            <h3 class="metric-value" id="stat-scraped-count">-</h3>
+          </div>
+        </div>
+
+        <!-- Metric 2: Health Rate -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">Engine Uptime</span>
+            <h3 class="metric-value" id="stat-health-rate">-</h3>
+          </div>
+        </div>
+
+        <!-- Metric 3: Config Delay -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">Pacing Interval</span>
+            <h3 class="metric-value" id="stat-pacing-delay">-</h3>
+          </div>
+        </div>
+
+        <!-- Metric 4: Crawler Status -->
+        <div class="metric-card">
+          <div class="metric-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="metric-icon">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+              <line x1="7" y1="2" x2="7" y2="22"></line>
+              <line x1="17" y1="2" x2="17" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+            </svg>
+          </div>
+          <div class="metric-details">
+            <span class="metric-label">Scraper State</span>
+            <h3 class="metric-value" id="stat-scraper-state">IDLE</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid Content split in two columns -->
+      <div class="dashboard-grid">
+        
+        <!-- Left Column: Controls and Terminal logs -->
+        <div class="dashboard-col left-col">
+          
+          <!-- Scraper Settings Card -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2 class="panel-title">Ingestion Configuration</h2>
+            </div>
+            <div class="panel-body">
+              <div class="slider-group">
+                <div class="slider-labels">
+                  <label for="delay-slider" class="input-label">Request Pacing Delay</label>
+                  <span class="slider-val-display" id="delay-value-display">2000 ms</span>
+                </div>
+                <input type="range" id="delay-slider" min="500" max="5000" step="250" value="2000" class="range-slider">
+                <p class="input-hint">Adds random variance (+0 to 1000ms) to bypass basic threshold patterns.</p>
+              </div>
+
+              <div class="form-row margin-top-md">
+                <div class="form-group flex-1">
+                  <label for="retries-input" class="input-label">Max Request Retries</label>
+                  <input type="number" id="retries-input" min="0" max="5" value="3" class="number-input">
+                </div>
+                <button id="save-settings-btn" class="cta-button outline small margin-top-lg">Apply Settings</button>
+              </div>
+
+              <div class="config-divider"></div>
+
+              <button id="trigger-scrape-btn" class="cta-button primary large full-width">
+                <span>Trigger Scraper Crawl</span>
+                <svg class="btn-spinner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display: none;">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                  <path d="M4 12a8 8 0 0 1 8-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Log Terminal Card -->
+          <div class="panel-card margin-top-lg">
+            <div class="panel-header flex-row">
+              <div class="indicator-group">
+                <span class="live-pulse"></span>
+                <h2 class="panel-title">Live Ingestion Terminal</h2>
+              </div>
+              <button class="btn-text-action" id="clear-terminal-btn">Reset Display</button>
+            </div>
+            
+            <div class="terminal-container">
+              <div class="terminal-body" id="terminal-logs">
+                <p class="terminal-log-line init">[00:00:00] Initializing telemetry stream...</p>
+                <p class="terminal-log-line init">[00:00:01] Listening to scraper thread logs...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Scraped Job Board -->
+        <div class="dashboard-col right-col">
+          
+          <!-- Job List Panel -->
+          <div class="panel-card full-height">
+            <div class="panel-header search-filter-header">
+              <h2 class="panel-title">Ingested Postings</h2>
+              
+              <div class="search-filter-controls">
+                <div class="search-input-wrapper">
+                  <label for="search-input" class="sr-only">Search Jobs</label>
+                  <input type="text" id="search-input" placeholder="Search title or company...">
+                  <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                
+                <div class="select-wrapper">
+                  <label for="region-filter" class="sr-only">Filter by Region</label>
+                  <select id="region-filter">
+                    <option value="all">Any Region</option>
+                    <option value="usa">USA Only</option>
+                    <option value="europe">Europe Only</option>
+                    <option value="americas">Americas Only</option>
+                    <option value="anywhere">Anywhere (Worldwide)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scrollable job items list -->
+            <div class="job-list-container">
+              <!-- Loading overlay -->
+              <div class="list-loader" id="list-loader" style="display: none;">
+                <div class="spinner"></div>
+                <p>Loading database cached jobs...</p>
+              </div>
+              
+              <!-- Empty state -->
+              <div class="jobs-empty-state" id="jobs-empty" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="empty-icon">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <h3>No jobs found</h3>
+                <p>Try clearing your filters or click 'Trigger Scraper Crawl' to ingest remote opportunities from the target.</p>
+              </div>
+
+              <!-- List Elements -->
+              <div class="jobs-list" id="jobs-list">
+                <!-- Javascript will inject job cards here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 22L12 17L22 22L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <path d="M12 2V17" stroke="currentColor" stroke-width="2" />
+          </svg>
+          <span>aero</span>
+        </div>
+        <p class="footer-tagline">Build it like you mean it.</p>
+        <p class="copyright-text">&copy; 2026 Aero Technologies. All rights reserved. Open-source under MIT License.</p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-links-group">
+          <h5>Documentation</h5>
+          <a href="DECISIONS.md" target="_blank">DECISIONS.md</a>
+          <a href="testing_instructions.md" target="_blank">Testing Instructions</a>
+          <a href="README.md" target="_blank">System README</a>
+        </div>
+        <div class="footer-links-group">
+          <h5>Actions</h5>
+          <button class="footer-easter-egg-btn" id="easter-egg-trigger" aria-label="Secret Trigger">Easter Egg Hint</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Retro Matrix Overlay Container (Active only when Easter Egg triggered) -->
+  <div class="retro-overlay" id="retro-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="retro-title">
+    <div class="retro-terminal">
+      <div class="terminal-bar">
+        <span class="terminal-title" id="retro-title">AERO // BACKDOOR_ACCESS_GRANTED</span>
+        <button class="terminal-close" id="retro-close-btn" aria-label="Close Terminal">&times;</button>
+      </div>
+      <div class="terminal-body" id="retro-terminal-body">
+        <p class="matrix-text green-text">Initializing connection to Aero core matrix...</p>
+        <p class="matrix-text green-text">Bypassing analytics servers... [SUCCESS] (0 servers found)</p>
+        <p class="matrix-text green-text">Loading local storage buffer... [SUCCESS] (Aero is 100% clean)</p>
+        <p class="matrix-text-prompt green-text">$ <span class="cursor">_</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
